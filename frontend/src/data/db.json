@@ -1,0 +1,44 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "demo1",
+        "email": "demo1@example.com",
+        "password": "demo1",
+        "avatar": "https://example.com/avatar1.jpg"
+      },
+      {
+        "id": 2,
+        "username": "demo2",
+        "email": "demo2@example.com",
+        "password": "demo2",
+        "avatar": "https://example.com/avatar2.jpg"
+      },
+      {
+        "id": 3,
+        "username": "onthemoon",
+        "email": "onthemoon@example.com",
+        "password" : "123456789",
+        "avatar": "https://example.com/avatar3.jpg"
+      }
+    ],
+    "posts": [
+      {
+        "id": 1,
+        "userId": 1,
+        "description": "My first postsssss!",
+        "imageURL": "https://th.bing.com/th/id/OIP.E4IJcali_762Oo_vNhhbFgHaEK?w=310&h=180&c=7&r=0&o=5&dpr=2&pid=1.7",
+        "createdAt": "2024-11-26T10:00:00Z",
+        "likes" : 0
+      },
+      {
+        "id": 2,
+        "userId": 2,
+        "description": "Beautiful sunset today",
+        "imageURL": "https://th.bing.com/th/id/OIP.7cRYFyLoDEDh4sRtM73vvwHaDg?w=321&h=166&c=7&r=0&o=5&dpr=2&pid=1.7",
+        "createdAt": "2024-11-26T11:00:00Z",
+        "likes" : 0
+      }
+    ]
+  }
+  

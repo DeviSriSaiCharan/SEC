@@ -15,7 +15,7 @@ const Home = () => {
   const isNotMobileScreen=useMediaQuery("(min-width:1000px)");
 
   const user=useSelector((state)=>state.user);
-  const profilepic=useSelector((state)=>state.user.profilepic)
+  const profilepic=useSelector((state)=>state.user.avatar)
 
 
 //  
@@ -33,7 +33,7 @@ const Home = () => {
      <Grid item xs={isNotMobileScreen?6:9}>
  <Box display="flex" alignItems="space-between" flexDirection="column" justifyContent="center">
   <AddPost profilepic={user.profilepic}></AddPost>
-  <Posts userId={user._id} isProfile={false}></Posts>
+  <Posts userId={user.id} isProfile={false}></Posts>
  </Box>
      </Grid>
  {isNotMobileScreen?(<Grid item xs={3}>

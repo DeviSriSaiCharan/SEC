@@ -8,6 +8,7 @@ import Dropzone from 'react-dropzone';
 import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { setLogin } from '../state/mainSlice';
+import axios from 'axios';
 
 const registerSchema = yup.object().shape({
   fullName: yup.string().required("Required"),
@@ -86,29 +87,23 @@ const handlespecialSubmit=async()=>{
 
    const body={ "username":"onthemoon",
     "password":"123456789"
-  }
-
-    const loggedUserResponse = await fetch("http://localhost:3001/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body:JSON.stringify(body),
-       credentials:"include"
-    });
- 
-    const loggedIn = await loggedUserResponse.json();
-    if(loggedIn.error){
-      throw new Error(loggedIn.error)
     }
-    console.log(loggedIn);
-    if (loggedIn) {
-      dispatch(
-        setLogin({
-          user: loggedIn,
-          token:loggedIn.token,
-        })
-      );
+
+    const users = await axios.get("http://localhost:3000/users");
+
+    const user = users.data[0].find(
+      (u) => u.username === body.username && u.password === body.password
+    )
+
+    if(user){
+      dispatch(setLogin({
+        user:user,
+        token:user.token
+      }))
       navigate("/home");
     }
+    else alert("Error in creation of dummy account");
+
   
   } catch (error) {
     console.error('Error logging in:', error);
@@ -122,25 +117,22 @@ const handlespecialSubmit=async()=>{
 
   const login = async (values, onSubmitProps) => {
     try {
-      const loggedUserResponse = await fetch("http://localhost:3001/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-        credentials:"include"
-      });
-
-      const loggedIn = await loggedUserResponse.json();
-      onSubmitProps.resetForm();
-      if (loggedIn) {
-        dispatch(
-          setLogin({
-            user: loggedIn,
-          token:loggedIn.token,
-          })
+      const users = await axios.get("http://localhost:3000/users");
+        console.log(users.data[0])
+        const user = users.data[0].find(
+          (u) => u.username == values.username && u.password == values.password
         );
-        navigate("/home");
-      }
-    } catch (error) {
+
+        if(user){
+          dispatch(setLogin({
+            user:user,
+            token:user.token
+          }))
+          navigate("/home");
+        }
+        else alert("Invalid Credentials");
+    } 
+    catch (error) {
       console.error('Error logging in:', error);
     }
   };

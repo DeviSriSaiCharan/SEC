@@ -25,10 +25,10 @@ const loggedUser=useSelector((state)=>state.user);
 
 
 
- const sendcomment=()=>{
-  console.log(comment);
-   dispatch(setComment({comment:comment}))
- }
+//  const sendcomment=()=>{
+//   console.log(comment);
+//    dispatch(setComment({comment:comment}))
+//  }
 
 
 
